@@ -11,29 +11,42 @@
 //snakes and ladders game
 const shallPassed = 30;
 let steps = 0;
+
 function generateRandomSteps() {
-  //don't touch it
+  // don`t touch it
   return Math.ceil(Math.random() * 10);
 }
-function generateRandomSecond() {
-  //don't touch it
+
+function generateRendomSeconds() {
+  // don`t touch it
   //in milliseconds
   return Math.ceil(Math.random() * 10) * 1000;
 }
+// console.log(generateRendomSeconds());
 
-function snakesAndLaddersGame(stepNow, seconds, callback) {
-  let step = stepNow;
-  let second = seconds;
-  let interval = setInterval(() => {
-    if (step >= shallPassed) {
-      clearInterval(interval);
-      callback(true);
-    } else {
-      step += generateRandomSteps();
-      second += generateRandomSecond();
-      setTimeout(() => {
-        snakesAndLaddersGame(step, second, callback);
-      }, second);
-    }
-  }, second);
+function snakeAndLaddersGame(stepNow, seconds, callback) {
+  setTimeout(() => {
+    console.log(
+      `step ini membutuhkan ${seconds / 1000} detik untuk menyelesaikanya`
+    );
+    console.log(
+      `step ini mendapatkan ${stepNow}\nsehingga langkah nyaa bertambah dari ${steps} menjadi ${(steps +=
+        stepNow)}\n`
+    );
+    callback(steps);
+  }, seconds);
 }
+
+function finisGame() {
+  if (steps >= shallPassed) {
+    console.log(
+      `Congratulations, you have passsed this game!And your total steps is ${steps}`
+    );
+  }
+}
+
+snakeAndLaddersGame(generateRandomSteps(), generateRendomSeconds(), finisGame);
+snakeAndLaddersGame(generateRandomSteps(), generateRendomSeconds(), finisGame);
+snakeAndLaddersGame(generateRandomSteps(), generateRendomSeconds(), finisGame);
+snakeAndLaddersGame(generateRandomSteps(), generateRendomSeconds(), finisGame);
+snakeAndLaddersGame(generateRandomSteps(), generateRendomSeconds(), finisGame);
